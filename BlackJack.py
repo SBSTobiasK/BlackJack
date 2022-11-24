@@ -18,12 +18,20 @@ def checksum(user):
             count += 11
         else:
             count += a
+    if count > 21:
+        if (count - user.count("A")*10) < 21:
+            count = count - user.count("A")*10
     return count
 
 def showboard():
     os.system('cls')
     print("Dealer:", dealer)
     print("Player: ", player1)
+
+def showboard_with_count():
+    os.system('cls')
+    print("Dealer:", dealer, checksum(dealer))
+    print("Player: ", player1, checksum(player1))
 
 
 drawcard(player1)
@@ -53,7 +61,9 @@ while True:
 while checksum(dealer) < 17 and gameon:
     drawcard(dealer)
     showboard()
-    time.sleep(1)
+    time.sleep(3)
+
+showboard_with_count()
 
 if checksum(dealer) > 21:
     print("Casino busted! Sie haben gewonnen!")
@@ -63,5 +73,3 @@ elif checksum(dealer) == checksum(player1):
     print("Draw.")
 else:
     print("Sie haben gewonnen!")
-
-
