@@ -1,9 +1,10 @@
-import random, os
+import random, os, time
 
 deck = [2, 3, 4, 5, 6, 7, 8, 9, 10, "B", "D", "K", "A"]*4
 random.shuffle(deck)
 player1 = []
 dealer = []
+gameon = True
 
 def drawcard(user):
     user.append(deck.pop())
@@ -31,16 +32,36 @@ drawcard(dealer)
 showboard()
 
 while True:
-    morecards = input("(s)tay/(d)raw/s(u)rrender? ")
-    if morecards == "d":
+    if player1.count("B") == 1 and player1.count("A") == 1:
+        print("Black Jack!")
+        break
+    morecards = input("(s)tay/(h)it/s(u)rrender? ")
+    if morecards == "h":
         drawcard(player1)
+        if (checksum(player1)) > 21:
+            showboard()
+            print("Busted! ", (checksum(player1)))
+            gameon = False
+            break
     elif morecards == "s":
         break
     elif morecards == "u":
+        gameon = False
         break
     showboard()
-    print(checksum(player1))
+
+while checksum(dealer) < 17 and gameon:
+    drawcard(dealer)
+    showboard()
+    time.sleep(1)
+
+if checksum(dealer) > 21:
+    print("Casino busted! Sie haben gewonnen!")
+elif checksum(dealer) > checksum(player1) or gameon == False:
+    print("Das Casino gewinnt.")
+elif checksum(dealer) == checksum(player1):
+    print("Draw.")
+else:
+    print("Sie haben gewonnen!")
 
 
-if player1.count("B") == 1 and player1.count("A") == 1:
-    print("Black Jack!")
