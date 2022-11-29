@@ -1,9 +1,14 @@
 from Setup import Player
 
-player1 = Player()
+players = []
 
-player1.setupPlayer("Test")
+for x in range(2):
+    user_input = input("Name: ")
+    players.append(user_input)
+    players[x] = Player()
+    players[x].setupPlayer(user_input)
 
-print(player1.getPlayername())
-print(player1.getKredits())
-print(player1.getHands())
+for x in range(2):
+    print(players[x].getPlayername())
+    print(players[x].getKredits())
+    print(players[x].getHands())

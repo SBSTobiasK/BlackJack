@@ -1,17 +1,20 @@
 class Player:
-    name = ""
-    kredits = ""
-    Hands = []
+    __name = ""
+    __kredits = ""
+    __Hands = []
 
     def setupPlayer(self, name):
-        self.name = name
-        self.kredits = 10
+        self.__name = name
+        self.__kredits = 10
 
     def getPlayername(self):
-        return self.name
+        return self.__name
+
+    def setKredit(self, kredit):
+        self.__kredits += kredit
 
     def getKredits(self):
-        return self.kredits
+        return self.__kredits
 
     def getHands(self):
-        return self.Hands
+        return self.__Hands
