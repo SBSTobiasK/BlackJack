@@ -32,13 +32,13 @@ def showboard():
     os.system('cls')
     print("Kredits: ", kredit)
     print("Dealer:", dealer)
-    print("Player: ", player1)
+    print("Setup: ", player1)
 
 def showboard_with_count():
     os.system('cls')
     print("Kredits: ", kredit)
     print("Dealer:", dealer, checksum(dealer))
-    print("Player: ", player1, checksum(player1))
+    print("Setup: ", player1, checksum(player1))
 
 weitermachen = True
 kredit = 10
