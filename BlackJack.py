@@ -40,12 +40,15 @@ def showboard_with_count():
     os.system('cls')
     print("Kredits: ", kredit)
     print("Dealer:", dealer, checksum(dealer))
-    print("Game: ", player1, checksum(player1))
+    if checksum(player1) > 21:
+        print("Game: ", player1, checksum(player1), "|", (checksum(player1) - player1.count("A")*10))
+    else:
+        print("Game: ", player1, checksum(player1))
 
 weitermachen = True
 kredit = 10
 
-while weitermachen == True and kredit > 0:
+while weitermachen == True and kredit >= 0:
     init_game()
 
     drawcard(player1)
@@ -54,7 +57,7 @@ while weitermachen == True and kredit > 0:
     showboard()
 
     while True:
-        if player1.count("B") == 1 and player1.count("A") == 1:
+        if player1.count("B") == 1 and player1.count("A") == 1 and len(player1) == 2:
             print("Black Jack!")
             kredit +=2
             break
@@ -80,7 +83,10 @@ while weitermachen == True and kredit > 0:
 
     showboard_with_count()
 
-    if checksum(dealer) > 21:
+    if gameon == False:
+        print("Das Casino gewinnt.")
+        kredit -= 1
+    elif checksum(dealer) > 21:
         print("Casino busted! Sie haben gewonnen!")
         kredit += 1
     elif checksum(dealer) > checksum(player1) or gameon == False:
@@ -91,11 +97,15 @@ while weitermachen == True and kredit > 0:
     else:
         print("Sie haben gewonnen!")
         kredit += 1
-    userinput = input("Noch eine Runde? (j/n): ")
-    if userinput == "j":
-        weitermachen = True
-    else:
-        weitermachen = False
+
+    while True:
+        userinput = input("Noch eine Runde? (j/n): ")
+        if userinput == "j":
+            weitermachen = True
+            break
+        elif userinput == "n":
+            weitermachen = False
+            break
 
 if kredit < 1:
     print("Schade, Sie haben kein Geld mehr.")
