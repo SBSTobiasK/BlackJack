@@ -24,21 +24,23 @@ def checksum(user):
         else:
             count += a
     if count > 21:
-        if (count - user.count("A")*10) < 21:
-            count = count - user.count("A")*10
+        for loop in range(user.count("A")):
+            if (count - (loop+1)*10) < 21:
+                count = count - (loop+1)*10
+                break
     return count
 
 def showboard():
     os.system('cls')
     print("Kredits: ", kredit)
     print("Dealer:", dealer)
-    print("Setup: ", player1)
+    print("Game: ", player1)
 
 def showboard_with_count():
     os.system('cls')
     print("Kredits: ", kredit)
     print("Dealer:", dealer, checksum(dealer))
-    print("Setup: ", player1, checksum(player1))
+    print("Game: ", player1, checksum(player1))
 
 weitermachen = True
 kredit = 10

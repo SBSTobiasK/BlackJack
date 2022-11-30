@@ -1,4 +1,5 @@
-from Setup import Player
+from Game import Player
+from Game import Board
 
 players = []
 
