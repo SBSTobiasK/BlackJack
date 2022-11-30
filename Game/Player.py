@@ -18,3 +18,5 @@ class Player:
 
     def getHands(self):
         return self.__Hands
+    def setHands(self, card):
+        self.__Hands.append(card)
