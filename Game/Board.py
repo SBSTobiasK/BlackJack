@@ -1,3 +1,5 @@
+from Game import Player
+
 class Board:
     players = []
     dealer = []
@@ -5,3 +7,6 @@ class Board:
 
     def addPlayer(self, name):
         self.players.append(name)
+        self.players
+    def getPlayer(self, pos):
+        return self.players[pos]

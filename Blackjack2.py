@@ -16,24 +16,16 @@ def inputspieler():
 table1 = Board()
 number_of_players = inputspieler()
 
+for x in range(number_of_players):
+    user_name = input("Name: ")
+    user_name = Player(user_name)
+    print(user_name.getPlayername())
+    table1.addPlayer(user_name)
+    player = table1.getPlayer(x)
+    print(player.getPlayername())
+
+
 #Give players names
-
-for x in range(number_of_players):
-    player_name_input = input("Name?: ")
-    table1.addPlayer(player_name_input)
-    table1.players[x] = Player()
-    table1.players[x].setupPlayer(player_name_input)
-    table1.players[x].setHands("A")
-    print(table1.players[x])
-
-for x in range(number_of_players):
-    outputname =  table1.players[x]
-    print(outputname.getPlayername())
-    print(outputname.getHands())
-
-
-
-
 #Start of Game
 #Players draw Cards
 #Dealer draws Card
